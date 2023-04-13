@@ -168,7 +168,7 @@ def parse_rtp_header(packet):
             else:
                 header_extension_profile = int.from_bytes(packet[12+csrc_count*4:14+csrc_count*4], byteorder='big')
                 header_extension_length = int.from_bytes(packet[14+csrc_count*4:16+csrc_count*4], byteorder='big')
-                header_extension_length *= 3
+                header_extension_length *= 4
                 if(len(packet)<16+csrc_count*4+header_extension_length):
                     print('[error] not valid rtp packet, csrs count={}, extension len={}, but but packet len={}'.format(csrc_count,header_extension_length,len(packet)))
                     return None

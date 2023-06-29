@@ -4,14 +4,14 @@
 import dpkt
 import sys
 def parse(inName, outName):
-    lasttime = -1
-    i = 0
     with open(inName,'rb') as fin:
         with  open(outName,'wb') as fout:
             pcap = dpkt.pcap.Reader(fin)
             for ts, buf in pcap:
                 if pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL:
                     l2pkt = dpkt.sll.SLL(buf)
+                elif pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL2:
+                    l2pkt = dpkt.sll2.SLL2(buf)
                 else:
                     l2pkt = dpkt.ethernet.Ethernet(buf)
                 ip = l2pkt.data
@@ -24,4 +24,3 @@ if __name__ == '__main__':
         print('ERROR: must supply pcap filename, output filename')
         sys.exit(1)
     parse(sys.argv[1],sys.argv[2])
-        

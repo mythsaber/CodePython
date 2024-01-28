@@ -288,6 +288,8 @@ def GetVidPid(inName):
         for ts, buf in pcap:
             if pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL:
                 l2pkt = dpkt.sll.SLL(buf)
+            elif pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL2:
+                l2pkt = dpkt.sll2.SLL2(buf)
             else:
                 l2pkt = dpkt.ethernet.Ethernet(buf)
             ip = l2pkt.data
@@ -310,6 +312,8 @@ def GetAudPid(inName):
         for ts, buf in pcap:
             if pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL:
                 l2pkt = dpkt.sll.SLL(buf)
+            elif pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL2:
+                l2pkt = dpkt.sll2.SLL2(buf)
             else:
                 l2pkt = dpkt.ethernet.Ethernet(buf)
             ip = l2pkt.data
@@ -525,6 +529,8 @@ def parseTime(inName, media_pid, outName,verbose, exitonerror):
 
                 if pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL:
                     l2pkt = dpkt.sll.SLL(buf)
+                elif pcap.datalink() == dpkt.pcap.DLT_LINUX_SLL2:
+                    l2pkt = dpkt.sll2.SLL2(buf)
                 else:
                     l2pkt = dpkt.ethernet.Ethernet(buf)
                 ip = l2pkt.data

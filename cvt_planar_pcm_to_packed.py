@@ -13,7 +13,7 @@ frame_size=None
 
 def parse_options():
     parser = OptionParser(
-        usage="%prog [-i]  [-ac]  [--sample_byte]  [--frame_size]", version="1.0")
+        usage="%prog [-i]  [--ac]  [--sample_byte]  [--frame_size]", version="1.0")
 
     parser.add_option("-i",
                       dest="filename",

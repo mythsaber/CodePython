@@ -1,10 +1,16 @@
 #!/usr/bin/env python3
 """
+功能：
 监控 MediaTransform 日志，每分钟(CHECK_INTERVAL)检查最近10秒(HANG_SECONDS)内的日志，
 检测是否有源连续10秒每秒丢帧数 ≥20(MIN_DROP_FRAMES_FOR_HANG)，若是则杀死进程。
 日志按小时分割，路径格式：
 /usr/sbin/sumavision/log/xStream2050s/xStream2050_0/MediaTransform/sys/YYYY-MM-DD/YYYY-MM-DD-HH.log
-用法：python3 detect_hang.py
+
+用法：
+放到一个单独的目录下，root用户
+执行命令后台运行：nohup python3 -u check_block.py &
+查看进程用ps -ef | grep python3，进程名叫python3 -u check_block.py
+会生成一个nohup.out的文件，里边是脚本记录的日志
 """
 
 import os
